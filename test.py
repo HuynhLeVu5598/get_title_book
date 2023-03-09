@@ -242,3 +242,108 @@
 #     except:
 #         print("Nhap sai")
 #         pass
+
+# from time import sleep
+
+# from selenium import webdriver
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.webdriver.common.by import By
+# import glob
+
+
+# def convert_string(string):
+#     # Replace all hyphens and underscores with spaces
+#     string = string.replace("-", " ").replace("_", " ")
+#     # Remove any remaining non-alphanumeric characters
+#     string = "".join(c for c in string if c.isalnum() or c.isspace())
+#     # Convert to lowercase and return
+#     return string.lower()
+
+
+# path = "D:/Vu/a/*.pdf"
+
+
+# # Create a new instance of the Chrome driver
+# driver = webdriver.Chrome("C:/Users/BTTB/Downloads/chromedriver_win32/chromedriver.exe")
+
+
+# for p in glob.glob(path):
+
+#     # driver.execute_script("window.open('');")
+#     driver.execute_script("window.open('about:blank', '_blank');")
+#     # Switch to the new tab
+#     driver.switch_to.window(driver.window_handles[-1])
+
+#     # Open a URL in the new tab
+#     driver.get("https://www.google.com")
+#     sleep(1)
+#     # Wait until the search bar element is visible
+#     search_bar = WebDriverWait(driver, 10).until(
+#         EC.visibility_of_element_located((By.NAME, "q"))
+#     )
+
+#     index = 0
+#     for i, a in zip(reversed(range(len(p))), reversed(p)):
+#         if a == "\\":
+#             index = i
+#             break
+
+#     name = p[index + 1 : -4]
+
+#     name = convert_string(name)
+#     print("name: ", name)
+
+#     # Type the search query and press Enter
+#     try:
+#         search_query = name + " site:amazon.com"
+#         search_bar.send_keys(search_query + Keys.RETURN)
+#         first_result = driver.find_element(By.CSS_SELECTOR, "h3.LC20lb.MBeuO.DKV0Md")
+
+#     except:
+#         driver.back()
+#         search_bar = WebDriverWait(driver, 10).until(
+#             EC.visibility_of_element_located((By.NAME, "q"))
+#         )
+#         search_query = name
+#         search_bar.send_keys(search_query + Keys.RETURN)
+#         sleep(2)
+
+#         first_result = driver.find_element(By.CSS_SELECTOR, "h3.LC20lb.MBeuO.DKV0Md")
+
+#     sleep(1)
+
+#     first_result.click()
+#     sleep(2)
+
+#     text_element = driver.find_element(By.ID, "productTitle")
+#     result_title = text_element.text
+
+#     # Print the title of the first search result
+#     print("Title: {}".format(result_title))
+#     sleep(1)
+
+#     driver.close()
+#     driver.switch_to.window(driver.window_handles[0])
+
+#     sleep(1)
+
+
+# sleep(1000)
+
+from selenium import webdriver
+from selenium import webdriver
+from undetected_chromedriver import Chrome
+from time import sleep
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
+
+driver = webdriver.Chrome("C:/Users/BTTB/Downloads/chromedriver_win32/chromedriver.exe")
+driver.get("https://www.amazon.com/Lonely-Planet-Munich-Bavaria-Forest/dp/1788680510")
+
+element1 = driver.find_element(By.CSS_SELECTOR, 'a.a-link-normal[href*="field-author"]')
+content1 = element1.text
+print(content1)
